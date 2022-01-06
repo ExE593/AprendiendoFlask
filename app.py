@@ -1,17 +1,19 @@
+from os import name
 from flask import Flask,redirect,url_for,render_template,request
 
 app=Flask(__name__)
-@app.route('/',methods=['GET','POST'])
+
+@app.route('/')
 def index():
     
     return render_template('index.html')
 
 
 
-@app.route('/greet')
+@app.route('/greet',methods=['POST'])
 def greet():
-    
-    return render_template("greet.html")
+    name = request.form.get("name")
+    return render_template("greet.html", name= name)
 
 
 if __name__ == '__main__':
